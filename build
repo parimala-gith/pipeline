@@ -1,0 +1,32 @@
+#!/bin/bash
+
+						set +x
+						cd c_programs
+						echo -e "\n\n**************************** This is a Build JOB **************************** "
+
+						if [[ -x "ABC.exe" ]]; then
+							echo "STEP 1:	Cleaning existing builds ........"
+								ls *.exe | nl | sed 's/	/) /g' | tr '\n' ' ' 
+									rm -f "./ABC.exe" 
+							echo -e "\n\nSTEP 2:	Cleaning existing Object files........"
+								ls *.o | nl | sed 's/	/) /g' | tr '\n' ' '
+									rm -f *.o
+						fi   
+							echo -e "\n\nSTEP 3:	Initiating Build for below files (using make)........"
+								ls *.c | nl | sed 's/	/) /g' | tr '\n' ' '
+							echo -e "\n"    
+								make
+
+						#dt=$(date +%Y-%m-%d_%H:%M:%S)
+
+						if [[ -x "./ABC.exe" ]]; then  
+							echo -e "\nSTEP 4:	Build Successful"
+							echo "       	BUILD_FILE: $(pwd)/ABC.exe"	
+						else
+							echo -e "**************** ERROR *********************\n"
+							echo "Build failure - No executable file generated"
+							echo -e "********************************************\n"
+							exit 1
+						fi    
+
+						echo -e "\n************************************************************************** "

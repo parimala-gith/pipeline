@@ -1,0 +1,21 @@
+pipeline {
+    agent none
+    stages {
+        stage('Back-end') {
+            agent {
+                docker { image 'ubuntu:latest' }
+            }
+            steps {
+                sh 'uname'
+            }
+        }
+        stage('Front-end') {
+            agent {
+                docker { image 'maven:latest' }
+            }
+            steps {
+                sh 'mvn --version'	
+			}
+        }
+    }
+}

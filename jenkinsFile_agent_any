@@ -1,0 +1,32 @@
+pipeline {
+agent any
+
+stages {
+stage ('All stages') {
+
+parallel {
+        stage('Build_check') {
+            steps {
+				input ('Press yes to continue')
+                echo 'Building..'
+				build job: 'parallel', parameters: [string(name: 'TEST', value: 'pipeline')]
+				sh 'sleep 20'
+				
+            }
+        }
+        stage('deploy') {
+            steps {
+                echo 'Deploying to TEST environment..'
+				sh 'sleep 20'
+            }
+        }
+        stage('test') {
+            steps {
+                echo 'Testing....'
+				sh 'sleep 20'
+					}
+				}
+    }
+	}
+}	
+}

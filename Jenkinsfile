@@ -37,6 +37,7 @@ stages {
 				sh '''
 					set +x
 					file="$(pwd)/c_programs/ABC.exe"
+					echo $file
 					[[ -f "$file" ]] && sudo rm -f "$file"
 					pwd; sudo chmod 777 build; ./build 1> /dev/null
 					

@@ -22,19 +22,19 @@ stages {
 							echo -e "\n"    
 								make
 
-						echo " Before if"
-						if [[ -x "ABC.exe" ]]
-						then  
-						        echo "inside if"
+						#echo " Before if"
+						#if [[ -x "ABC.exe" ]]
+						#then  
+						#        echo "inside if"
 							echo -e "\nSTEP 4:	Build Successful"
 							echo "       	BUILD_FILE: $(pwd)/ABC.exe"	
-						else
-						        echo "inside else"
-							echo -e "**************** ERROR *********************\n"
-							echo "Build failure - No executable file generated"
-							echo -e "********************************************\n"
-							exit 1
-						fi    
+						#else
+						#        echo "inside else"
+					#		echo -e "**************** ERROR *********************\n"
+					#		echo "Build failure - No executable file generated"
+					#		echo -e "********************************************\n"
+					#		exit 1
+					#	fi    
 
 						echo -e "\n************************************************************************** "
 				'''

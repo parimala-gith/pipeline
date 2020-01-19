@@ -8,28 +8,10 @@ stages {
 						set +x
 						cd c_programs
 						echo -e "\n\n**************************** This is a Build JOB **************************** "
-
-						if [[ -x "ABC.exe" ]]; then
-							echo "STEP 1:	Cleaning existing builds ........"
-								ls *.exe | nl | sed 's/	/) /g' | tr '\n' ' ' 
-									rm -f "./ABC.exe" 
-							echo -e "\n\nSTEP 2:	Cleaning existing Object files........"
-								ls *.o | nl | sed 's/	/) /g' | tr '\n' ' '
-									rm -f *.o
-						fi   
-							echo -e "\n\nSTEP 3:	Initiating Build for below files (using make)........"
-								ls *.c | nl | sed 's/	/) /g' | tr '\n' ' '
-							echo -e "\n"    
-								make
-
-						
+						   	make		
 							echo -e "\nSTEP 4:	Build Successful"
-							echo "       	BUILD_FILE: $(pwd)/ABC.exe"	
-					
-						echo -e "\n************************************************************************** "
-				'''
-				
-            }
+				  '''
+	            }
         }
         stage('deploy') {
             steps {
@@ -37,7 +19,7 @@ stages {
 				sh '''
 					set +x
 					file="$(pwd)/c_programs/ABC.exe"
-					echo $file
+					cp $file $(pwd)/build
 					[[ -f "$file" ]] && sudo rm -f "$file"
 					pwd; sudo chmod 777 build; ./build 1> /dev/null
 					
